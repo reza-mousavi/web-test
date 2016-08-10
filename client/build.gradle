@@ -1,0 +1,8 @@
+dependencies {
+	compile('org.seleniumhq.selenium:selenium-java:2.53.1')
+	compile('io.github.bonigarcia:webdrivermanager:1.4.7')
+
+	compile('org.seleniumhq.selenium:selenium-iphone-driver:2.39.0')
+	compile('org.seleniumhq.selenium:selenium-android-driver:2.39.0')
+
+}
