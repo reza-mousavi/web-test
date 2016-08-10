@@ -5,12 +5,10 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.GeckoDriverService;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.safari.SafariDriver;
 
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
@@ -21,7 +19,6 @@ import java.util.function.Supplier;
 public class Client {
 
     private static final String PHANTOM_JS_PATH = "C:/java/phantomjs-2.1.1/bin/phantomjs.exe";
-    private static final String CHROME_PATH = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe";
 
     public static void main(String[] args) {
         testDriver(Client::phantomJSDriver);
@@ -43,11 +40,22 @@ public class Client {
         driver.quit();
     }
 
+    //
+
+    /**
+     * Chrome with user interface, it is npt required Chrome be installed on local machine.
+     *By using ChromeDriverManager the driver will be downloaded automatically from
+     * corresponding web-site.
+     * @return Chrome driver
+     */
     private static WebDriver chromeDriver() {
         ChromeDriverManager.getInstance().setup();
-        return new ChromeDriver();
+        final ChromeDriver chromeDriver = new ChromeDriver();
+        chromeDriver.manage().window().maximize();
+        return chromeDriver;
     }
 
+    //Headless driver based on Mozilla firefox Rhino
     private static WebDriver htmlUnitDriver() {
         final DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setJavascriptEnabled(true);
@@ -55,6 +63,7 @@ public class Client {
         return new HtmlUnitDriver(desiredCapabilities);
     }
 
+    //Firefox with user interface
     private static WebDriver fireFoxDriver() {
         final DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setJavascriptEnabled(true);
@@ -63,6 +72,7 @@ public class Client {
         return new FirefoxDriver(desiredCapabilities);
     }
 
+    //Headless driver relies on Chrome and Saffari engine
     private static WebDriver phantomJSDriver() {
         final DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setJavascriptEnabled(true);
