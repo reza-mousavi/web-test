@@ -16,8 +16,8 @@ apply plugin: 'spring-boot'
 
 dependencies {
 
-	def springVersion = '4.3.0.RELEASE'
-	def springBootVersion = '1.3.5.RELEASE'
+	def springVersion = project.getProperty('server.dependency.spring.version')
+	def springBootVersion = project.getProperty('server.dependency.spring.boot.version')
 
 	compile('org.springframework:spring-beans:'+ springVersion)
     compile('org.springframework:spring-core:'+ springVersion)
@@ -35,5 +35,9 @@ dependencies {
 	compile ('org.springframework.boot:spring-boot-starter-freemarker:' + springBootVersion){
 		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 	}
+
+	testCompile ('org.springframework.boot:spring-boot-starter-test:' + springBootVersion)
+	testCompile ('org.springframework.boot:spring-boot-test-autoconfigure:' + springBootVersion)
+	testCompile("junit:junit")
 
 }
