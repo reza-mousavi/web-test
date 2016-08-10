@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GreetingRestController {
 
-    @RequestMapping(value = "/rest/greeting", produces = "application/json")
+    @RequestMapping(value = "/rest/greeting", produces = "application/json;charset=UTF-8")
     public String greet(
             @RequestParam(name = "name", defaultValue = "World")String name
     ){

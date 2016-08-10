@@ -19,6 +19,7 @@ dependencies {
 	def springVersion = project.getProperty('server.dependency.spring.version')
 	def springBootVersion = project.getProperty('server.dependency.spring.boot.version')
 
+	compile('commons-logging:commons-logging:1.2')
 	compile('org.springframework:spring-beans:'+ springVersion)
     compile('org.springframework:spring-core:'+ springVersion)
     compile('org.springframework:spring-context:'+ springVersion)
@@ -37,7 +38,5 @@ dependencies {
 	}
 
 	testCompile ('org.springframework.boot:spring-boot-starter-test:' + springBootVersion)
-	testCompile ('org.springframework.boot:spring-boot-test-autoconfigure:' + springBootVersion)
-	testCompile("junit:junit")
 
 }
