@@ -20,12 +20,11 @@ dependencies {
 	def springBootVersion = project.getProperty('server.dependency.spring.boot.version')
 
 	compile('commons-logging:commons-logging:1.2')
-	compile('org.springframework:spring-beans:'+ springVersion)
-    compile('org.springframework:spring-core:'+ springVersion)
-    compile('org.springframework:spring-context:'+ springVersion)
-    compile('org.springframework:spring-aop:'+ springVersion)
-    compile('org.springframework:spring-expression:'+ springVersion)
-	compile ('org.springframework:spring-web:' + springVersion)
+    compile('org.springframework:spring-jdbc:'+ springVersion)
+	compile('org.springframework:spring-web:' + springVersion)
+	compile('mysql:mysql-connector-java:6.0.3')
+	compile('org.hibernate:hibernate-core:5.2.1.Final')
+
 	compile ('org.springframework.boot:spring-boot-starter:' + springBootVersion){
 		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 	}
@@ -33,7 +32,12 @@ dependencies {
 	compile ('org.springframework.boot:spring-boot-starter-tomcat:' + springBootVersion){
 		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 	}
-	compile ('org.springframework.boot:spring-boot-starter-freemarker:' + springBootVersion){
+
+	compile('org.springframework.boot:spring-boot-starter-freemarker:' + springBootVersion){
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+
+	compile('org.springframework.boot:spring-boot-starter-data-jpa:' + springBootVersion){
 		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 	}
 
